@@ -4,6 +4,6 @@ pid "#{root}/tmp/pids/unicorn.pid"
 stderr_path "#{root}/log/unicorn.log"
 stdout_path "#{root}/log/unicorn.log"
 
-listen "http://127.0.0.1:2827"
+listen "127.0.0.1:2827"
 worker_processes 2
 timeout 30
