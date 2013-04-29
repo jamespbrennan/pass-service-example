@@ -6,6 +6,8 @@ class SessionsController < ApplicationController
       # Deal with it!
     end
 
+    session.pass_session_id = pass_session.id
+
     @pass_session_id = pass_session.id
   end
 
@@ -20,6 +22,7 @@ class SessionsController < ApplicationController
     pass_session = Pass::Session.retreieve params[:id]
 
     if pass_session.is_authenticated && pass_session.user
+      session = ActiveRecord::SessionStore::Session.find_by_pass_session_id(pass_session.id)
       session[:user_id] = pass_session.user.id
     end
   end

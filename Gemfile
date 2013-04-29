@@ -5,6 +5,8 @@ gem 'rails', '4.0.0.beta1'
 
 gem 'sqlite3'
 
+gem 'activerecord-session_store'
+
 # Gems used only for assets and not required
 # in production environments by default.
 group :assets do

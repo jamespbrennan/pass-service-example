@@ -11,7 +11,19 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20130320202631) do
+ActiveRecord::Schema.define(version: 20130429002144) do
+
+  create_table "sessions", force: true do |t|
+    t.string   "session_id",      null: false
+    t.text     "data"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+    t.integer  "pass_session_id"
+  end
+
+  add_index "sessions", ["pass_session_id"], name: "index_sessions_on_pass_session_id"
+  add_index "sessions", ["session_id"], name: "index_sessions_on_session_id"
+  add_index "sessions", ["updated_at"], name: "index_sessions_on_updated_at"
 
   create_table "users", force: true do |t|
     t.integer  "pass_id"
