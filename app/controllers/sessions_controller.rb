@@ -3,19 +3,17 @@ class SessionsController < ApplicationController
     begin
       pass_session = Pass::Session.create
     rescue Pass::APIError
-      # Deal with it!
+      render text: 'Pass API Error!'
     end
 
-    session = Session.new
-
-    session.pass_session_id = pass_session.id
+    session[:pass_session_id] = pass_session.id
 
     @pass_session_id = pass_session.id
   end
 
   def destroy
     session[:user_id] = nil
-    redirect_to root_url, notice: "Logged out!"
+    redirect_to root_url, notice: 'Logged out!'
   end
 
   def callback
@@ -24,8 +22,9 @@ class SessionsController < ApplicationController
     pass_session = Pass::Session.retreieve params[:id]
 
     if pass_session.is_authenticated && pass_session.user
-      session = Session.find_by_pass_session_id(pass_session.id)
-      session[:user_id] = pass_session.user.id
+      session = ActiveRecord::SessionStore::Session.find_by_pass_session_id(pass_session.id)
+      session.set_attribute!("user_id", pass_session.user_id)
+      session.save
     end
   end
 end
