@@ -27,7 +27,7 @@ class SessionsController < ApplicationController
 
       if pass_session.is_authenticated && pass_session.user
         session = ActiveRecord::SessionStore::Session.find_by_pass_session_id(pass_session.id)
-        session.set_attribute!("user_id", pass_session.user.id)
+        session.set_attribute!("pass_user_id", pass_session.user.id)
         session.save
       end
     # rescue Pass::PassError => e
