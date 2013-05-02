@@ -1,6 +1,6 @@
 class SessionsController < ApplicationController
   def new
-    redirect_to root_url, protocol: 'https://' unless current_user.nil?
+    redirect_to controller: 'secret', action: 'index', protocol: 'https://' unless current_user.nil?
 
     begin
       pass_session = Pass::Session.create
@@ -15,8 +15,8 @@ class SessionsController < ApplicationController
   end
 
   def destroy
-    session[:user_id] = nil
-    redirect_to root_url, protocol: 'https://'
+    session[:pass_user_id] = nil
+    redirect_to controller: 'secret', action: 'index', protocol: 'https://'
   end
 
   def callback
