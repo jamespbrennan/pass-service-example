@@ -19,7 +19,7 @@ class SessionsController < ApplicationController
   def callback
     params.required('id')
 
-    pass_session = Pass::Session.retreieve params[:id]
+    pass_session = Pass::Session.retrieve params[:id]
 
     if pass_session.is_authenticated && pass_session.user
       session = ActiveRecord::SessionStore::Session.find_by_pass_session_id(pass_session.id)
