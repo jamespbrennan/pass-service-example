@@ -1,5 +1,5 @@
 PassServiceExample::Application.routes.draw do
-  get "sessions/new"
+  get 'sessions/new', to: 'sessions#new'
 
   post 'sessions/callback', to: 'sessions#callback'
   post 'users/callback', to: 'users#callback'
@@ -7,5 +7,7 @@ PassServiceExample::Application.routes.draw do
   get 'login', to: 'sessions#new', as: 'login'
   get 'logout', to: 'sessions#destroy', as: 'logout'
 
-  root to: "sessions#new"
+  get 'secret', to: 'secret#index'
+
+  root to: 'secret#index'
 end

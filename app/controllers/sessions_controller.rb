@@ -1,6 +1,6 @@
 class SessionsController < ApplicationController
   def new
-    redirect_to root_url unless current_user.nil?
+    redirect_to root_url, :protocol => 'https://' unless current_user.nil?
 
     begin
       pass_session = Pass::Session.create
@@ -16,7 +16,7 @@ class SessionsController < ApplicationController
 
   def destroy
     session[:user_id] = nil
-    redirect_to root_url, notice: 'Logged out!'
+    redirect_to root_url, notice: 'Logged out!', :protocol => 'https://'
   end
 
   def callback
