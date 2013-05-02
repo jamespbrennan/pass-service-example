@@ -19,6 +19,8 @@ group :assets do
   gem 'uglifier', '>= 1.0.3'
 end
 
+gem 'therubyracer'
+
 gem 'jquery-rails'
 
 # Turbolinks makes following links in your web application faster. Read more: https://github.com/rails/turbolinks
