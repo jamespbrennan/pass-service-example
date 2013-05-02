@@ -1,8 +1,7 @@
 class UsersController < ApplicationController
   def callback
-    params.required(:email)
-    params.required(:user_id)
-    User.create(email: params[:email], pass_user_id: params[:user_id])
+    attributes = params.required(:user).permit(:id, :email)
+    User.create(email: attributes[:email], pass_user_id: attributes[:id])
 
     render :nothing => true
   end
