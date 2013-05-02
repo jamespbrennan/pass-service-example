@@ -1,5 +1,7 @@
 class SessionsController < ApplicationController
   def new
+    redirect_to root_url unless current_user.nil?
+    
     begin
       pass_session = Pass::Session.create
     rescue Pass::PassError
