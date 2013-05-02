@@ -20,7 +20,7 @@ class SessionsController < ApplicationController
     params.required('session_id')
 
     begin
-      pass_session = Pass::Session.retrieve params[:session_id]
+      pass_session = Pass::Session.retrieve params[:session_id].to_s
 
       if pass_session.is_authenticated && pass_session.user
         session = ActiveRecord::SessionStore::Session.find_by_pass_session_id(pass_session.id)
