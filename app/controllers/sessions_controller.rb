@@ -1,10 +1,11 @@
 class SessionsController < ApplicationController
   def new
     redirect_to root_url unless current_user.nil?
-    
+
     begin
       pass_session = Pass::Session.create
-    rescue Pass::PassError
+    rescue Pass::PassError => e
+      logger.error e.to_s
       render text: 'Pass API Error!'
     end
 
@@ -29,7 +30,8 @@ class SessionsController < ApplicationController
         session.set_attribute!("user_id", pass_session.user_id)
         session.save
       end
-    rescue Pass::PassError
+    rescue Pass::PassError => e
+      logger.error e.to_s
       render text: 'Pass Error!'
       return
     end
