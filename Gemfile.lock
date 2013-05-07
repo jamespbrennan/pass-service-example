@@ -1,6 +1,6 @@
 GIT
-  remote: git@jamesbrennan.ca:jamesbrennan/pass-ruby.git
-  revision: 049ac835afbd20efc1e5745a8af0c644449ce758
+  remote: git://github.com/jamespbrennan/pass-ruby.git
+  revision: d633fd6954e54453822e0cdb9246bbf794fceeda
   specs:
     pass-ruby (0.1.0)
       multi_json (>= 1.0.4, < 2)
